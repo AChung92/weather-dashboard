@@ -1,4 +1,4 @@
-# Weather Dasbobard
+# Weather Dasboard
 Webpage for a weather application
 
 ## Table of Contents
@@ -23,4 +23,4 @@ To view my finished project please visit the below.
 
 ## Screenshot
 
-![screenshot](assets/images/example.PNG)
+![screenshot](assets/images/example.png)
