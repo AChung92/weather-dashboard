@@ -23,8 +23,7 @@ function initPage() {
         'https://api.openweathermap.org/data/2.5/weather?q=' +
         cityName +
         '&appid=' +
-        APIKey +
-        '&api_key=HvaacROi9w5oQCDYHSIk42eiDSIXH3FN&limit=1'
+        APIKey
         )
 
         .then(function(response) {
@@ -39,7 +38,7 @@ function initPage() {
             const day = currentDate.getDate();
             const month = currentDate.getMonth() + 1;
             const year = currentDate.getFullYear();
-            nameEl.innerHTML = response.name + " (" + month + "/" + year + ")";
+            nameEl.innerHTML = response.name + " (" + month + "/" + day + "/" + year + ") ";
             let weatherPic = response.weather[0].icon;
             currentPicEl.setAttribute("src", "https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
             currentPicEl.setAttribute("alt", response.weather[0].description);
@@ -52,13 +51,12 @@ function initPage() {
             let lon = response.coord.lon;
 
             fetch(
-                'https://api.openweathermap.org/data/2.5/weather?lat=' +
+                'https://api.openweathermap.org/data/2.5/uvi?lat=' +
                 lat +
                 '&lon=' +
                 lon +
                 '&appid=' +
-                APIKey +
-                '$cnt=1'
+                APIKey
             )
 
             .then(function(response) {
@@ -69,17 +67,17 @@ function initPage() {
                 let UVIndex = document.createElement("span");
                         
                 // When UV Index is good, shows green, when ok shows yellow, when bad shows red
-                if (response.value[0] < 4 ) {
+                if (response.value < 4 ) {
                     UVIndex.setAttribute("class", "badge badge-success");
                 }
-                else if (response.value[0] < 8) {
+                else if (response.value < 8) {
                     UVIndex.setAttribute("class", "badge badge-warning");
                 }
                 else {
                     UVIndex.setAttribute("class", "badge badge-danger");
                 }
-                console.log(response.value[0])
-                UVIndex.innerHTML = response.value[0];
+                console.log(response.value)
+                UVIndex.innerHTML = response.value;
                 currentUVEl.innerHTML = "UV Index: ";
                 currentUVEl.append(UVIndex);
         });
